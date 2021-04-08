@@ -9,6 +9,8 @@ type Route struct {
 	Handler    http.Handler
 }
 
+type Action = Route
+
 type HandlerFunc func(next http.Handler) http.Handler
 
 type Handler2Func func(w http.ResponseWriter, r *http.Request)
