@@ -31,7 +31,7 @@ func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares .
 
 func method(method string, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if method != r.Method && method != OPTIONS_METHOD {
+		if method != r.Method && r.Method != OPTIONS_METHOD {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
 			_, err := w.Write([]byte(`{"error":"` + r.Method + ` is not allowed for this route"}`))
