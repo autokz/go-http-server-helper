@@ -26,7 +26,21 @@ func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares .
 		}
 	}
 
-	return middlewareChain
+	return getOptionsMiddleware(middlewareChain)
+}
+
+func getOptionsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method == OPTIONS_METHOD {
+			w.WriteHeader(http.StatusOK)
+			_, err := w.Write([]byte(`{"options":"ok"}`))
+			if err != nil {
+				fmt.Print(err)
+			}
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
 }
 
 func method(method string, next http.Handler) http.Handler {
