@@ -6,6 +6,18 @@ import (
 )
 
 func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares ...HandlerFunc) http.Handler {
+	if requestedMethod == OPTIONS_METHOD {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			if r.Method == OPTIONS_METHOD {
+				w.WriteHeader(http.StatusOK)
+				_, err := w.Write([]byte(`{"options":"ok"}`))
+				if err != nil {
+					fmt.Print(err)
+				}
+				return
+			}
+		})
+	}
 
 	endPointHandlerWithMethod := method(requestedMethod, http.HandlerFunc(endPointHandler))
 	countMiddleware := len(middlewares)
@@ -31,15 +43,6 @@ func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares .
 
 func method(method string, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == OPTIONS_METHOD {
-			w.WriteHeader(http.StatusOK)
-			_, err := w.Write([]byte(`{"options":"ok"}`))
-			if err != nil {
-				fmt.Print(err)
-			}
-			return
-		}
-
 		if method != r.Method {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
