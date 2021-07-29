@@ -11,7 +11,7 @@ func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares .
 	countMiddleware := len(middlewares)
 
 	if countMiddleware == 0 {
-		return endPointHandlerWithMethod
+		return getOptionsMiddleware(endPointHandlerWithMethod)
 	}
 
 	var middlewareFunc HandlerFunc
@@ -32,8 +32,13 @@ func Compose(endPointHandler Handler2Func, requestedMethod string, middlewares .
 func getOptionsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == OPTIONS_METHOD {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS")
+			w.Header().Set("Access-Control-Allow-Headers", "Authorization, X-Satrap-1, X-Satrap-2, Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
+			w.Header().Set("Access-Control-Expose-Headers", "X-Satrap-1, X-Satrap-2")
+
 			w.WriteHeader(http.StatusOK)
-			_, err := w.Write([]byte(`{"options":"ok"}`))
+			_, err := w.Write([]byte("[]"))
 			if err != nil {
 				fmt.Print(err)
 			}
@@ -45,15 +50,6 @@ func getOptionsMiddleware(next http.Handler) http.Handler {
 
 func method(method string, next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == OPTIONS_METHOD {
-			w.WriteHeader(http.StatusOK)
-			_, err := w.Write([]byte(`{"options":"ok"}`))
-			if err != nil {
-				fmt.Print(err)
-			}
-			return
-		}
-
 		if method != r.Method {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
