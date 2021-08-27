@@ -1,3 +1,3 @@
-module "github.com/autokz/go-http-server-helper/v2"
+module "github.com/autokz/go-http-server-helper"
 
 go 1.16
