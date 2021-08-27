@@ -47,7 +47,7 @@ func (r *Route) checkRequestMethodMiddleware(next http.HandlerFunc) http.Handler
 		if req.Method != r.Method {
 			w.WriteHeader(http.StatusMethodNotAllowed)
 
-			_, err := w.Write([]byte(`{"error":"` + req.Method + ` is not allowed for this route"}`))
+			_, err := w.Write([]byte(`{"error":"` + req.Method + ` is not allowed for this route. available: ` + r.Method + `"}`))
 			if err != nil {
 				fmt.Print(err)
 			}
