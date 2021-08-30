@@ -6,7 +6,7 @@ import (
 
 type Routes struct {
 	UrlPrefix   string
-	Routes      []Route
+	Routes      []*Route
 	Middlewares []Middleware
 }
 
@@ -17,7 +17,7 @@ func (r *Routes) composeRoutes(mux *http.ServeMux) {
 	}
 }
 
-func RegisterGroupRoutes(mux *http.ServeMux, routes ...Routes) {
+func RegisterGroupRoutes(mux *http.ServeMux, routes ...*Routes) {
 	for _, v := range routes {
 		v.composeRoutes(mux)
 	}

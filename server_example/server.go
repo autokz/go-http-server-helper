@@ -13,11 +13,11 @@ func getRoutes() *http.ServeMux {
 
 	httpHelper.RegisterGroupRoutes(
 		mux,
-		routes.TestRoutes,
-		routes.TestRoutes2,
+		&routes.TestRoutes,
+		&routes.TestRoutes2,
 	)
 
-	httpHelper.RegisterRoute(mux, routes.Route4)
+	httpHelper.RegisterRoute(mux, &routes.Route4)
 
 	return mux
 }

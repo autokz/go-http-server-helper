@@ -8,9 +8,9 @@ import (
 
 var TestRoutes = httpHelper.Routes{
 	UrlPrefix: "/v1",
-	Routes: []httpHelper.Route{
-		Route1,
-		Route2,
+	Routes: []*httpHelper.Route{
+		&Route1,
+		&Route2,
 	},
 	Middlewares: []httpHelper.Middleware{
 		middleware.MainMiddleware1,

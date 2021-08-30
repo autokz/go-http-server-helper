@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func RegisterRoute(mux *http.ServeMux, route Route) {
+func RegisterRoute(mux *http.ServeMux, route *Route) {
 	mux.HandleFunc(route.UrlPattern, route.composeAction())
 }
 
