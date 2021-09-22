@@ -10,11 +10,11 @@ func RegisterRoute(mux *http.ServeMux, route *Route) {
 }
 
 type Route struct {
-	UrlPattern       string
-	Method           string
-	Action           http.HandlerFunc
-	RouteMiddlewares Middlewares
-	Options          bool
+	UrlPattern         string
+	Method             string
+	Action             http.HandlerFunc
+	RouteMiddlewares   Middlewares
+	DefaultCORSOptions bool
 }
 
 func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc {
@@ -40,7 +40,7 @@ func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc 
 		}
 	}
 
-	if r.Options {
+	if r.DefaultCORSOptions {
 		return getOptionsMiddleware(middlewareChain)
 	}
 	return middlewareChain
