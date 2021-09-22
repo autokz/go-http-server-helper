@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func getOptionsMiddleware(next http.HandlerFunc) http.HandlerFunc {
+func getDefaultOptionsMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == OPTIONS_METHOD {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
