@@ -14,6 +14,7 @@ type Route struct {
 	Method           string
 	Action           http.HandlerFunc
 	RouteMiddlewares Middlewares
+	Options          bool
 }
 
 func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc {
@@ -39,7 +40,10 @@ func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc 
 		}
 	}
 
-	return getOptionsMiddleware(middlewareChain)
+	if r.Options {
+		return getOptionsMiddleware(middlewareChain)
+	}
+	return middlewareChain
 }
 
 func (r *Route) checkRequestMethodMiddleware(next http.HandlerFunc) http.HandlerFunc {
