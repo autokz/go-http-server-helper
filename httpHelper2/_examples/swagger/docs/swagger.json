@@ -1,0 +1,82 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This example shows 3 ways to create a swagger documentation handler",
+        "title": "Swagger Example",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/users": {
+            "get": {
+                "description": "Returns a list of all users.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get All Users.",
+                "operationId": "get-all-users",
+                "responses": {
+                    "200": {
+                        "description": "Response object containing a list of all users",
+                        "schema": {
+                            "$ref": "#/definitions/main.User"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/contacts": {
+            "get": {
+                "description": "Returns the contacts of all users.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get User Contacts.",
+                "operationId": "get-user-contacts",
+                "responses": {
+                    "200": {
+                        "description": "Response object containing a list of all the user's contacts",
+                        "schema": {
+                            "$ref": "#/definitions/main.Contact"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Contact": {
+            "type": "object",
+            "properties": {
+                "phone": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "main.User": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

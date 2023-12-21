@@ -1,0 +1,54 @@
+basePath: /
+definitions:
+  main.Contact:
+    properties:
+      phone:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  main.User:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This example shows 3 ways to create a swagger documentation handler
+  title: Swagger Example
+  version: "1.0"
+paths:
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Returns a list of all users.
+      operationId: get-all-users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response object containing a list of all users
+          schema:
+            $ref: '#/definitions/main.User'
+      summary: Get All Users.
+  /users/contacts:
+    get:
+      consumes:
+      - application/json
+      description: Returns the contacts of all users.
+      operationId: get-user-contacts
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Response object containing a list of all the user's contacts
+          schema:
+            $ref: '#/definitions/main.Contact'
+      summary: Get User Contacts.
+swagger: "2.0"
