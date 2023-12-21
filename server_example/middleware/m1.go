@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// TEST
 func M1(next http.HandlerFunc) http.HandlerFunc {
 	return func(writer http.ResponseWriter, request *http.Request) {
 		log.Println(1)
