@@ -39,14 +39,14 @@ func (r *Router) NewGroupRoute(
 	if middlewares == nil {
 		middlewares = make([]Middleware, 0)
 	}
-	r.mu.Lock()
-	defer r.mu.Unlock()
 	if pattern == "" {
-		panic("empty pattern")
+		ErrorLog.Panic("empty pattern")
 	}
 	if pattern[len(pattern)-1] == '/' {
 		pattern = pattern[:len(pattern)-1]
 	}
+	r.mu.Lock()
+	defer r.mu.Unlock()
 	if _, ok := r.groups[pattern]; ok {
 		ErrorLog.Panicf("the \"%s\" group route already exists", pattern)
 	}
@@ -104,8 +104,8 @@ func (r *Router) CORS(cors *CORS) *Router {
 	return r
 }
 
-// Handler returns the underlying HTTP serve mux for the router.
-func (r *Router) Handler() *http.ServeMux {
+// Mux returns the underlying HTTP serve mux for the router.
+func (r *Router) Mux() *http.ServeMux {
 	r.handle()
 	return r.mux
 }

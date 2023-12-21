@@ -38,5 +38,5 @@ func main() {
 		})
 	}, httpHelper2.JsonMiddleware)
 
-	log.Fatal(http.ListenAndServe(":8080", router.Handler()))
+	log.Fatal(http.ListenAndServe(":8080", router.Mux()))
 }

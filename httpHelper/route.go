@@ -5,6 +5,8 @@ import (
 	"net/http"
 )
 
+// RegisterRoute
+// Deprecated: The function is deprecated use the httpHelper2 package.
 func RegisterRoute(mux *http.ServeMux, route *Route) {
 	mux.HandleFunc(route.UrlPattern, route.composeAction())
 }
@@ -17,6 +19,8 @@ type Route struct {
 	OptionsMiddleware Middleware
 }
 
+// composeAction
+// Deprecated: The function is deprecated use the httpHelper2 package.
 func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc {
 	var middlewares []Middleware
 	middlewares = append(middlewares, r.RouteMiddlewares...)
@@ -46,6 +50,8 @@ func (r *Route) composeAction(routesMiddlewares ...Middleware) http.HandlerFunc 
 	return r.OptionsMiddleware(middlewareChain)
 }
 
+// checkRequestMethodMiddleware
+// Deprecated: The function is deprecated use the httpHelper2 package.
 func (r *Route) checkRequestMethodMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		if req.Method != r.Method {

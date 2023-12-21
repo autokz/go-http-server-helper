@@ -20,5 +20,5 @@ func main() {
 	router.Get("/", _examples.Welcome)
 
 	log.Println(cors)
-	log.Fatal(http.ListenAndServe(":8080", router.Handler()))
+	log.Fatal(http.ListenAndServe(":8080", router.Mux()))
 }

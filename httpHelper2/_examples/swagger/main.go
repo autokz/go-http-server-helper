@@ -43,7 +43,7 @@ func main() {
 		gr.Swagger("./docs") // http://localhost:8080/v2/swagger
 	})
 
-	log.Fatal(http.ListenAndServe(":8080", router.Handler()))
+	log.Fatal(http.ListenAndServe(":8080", router.Mux()))
 }
 
 // Users

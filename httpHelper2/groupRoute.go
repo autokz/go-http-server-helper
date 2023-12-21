@@ -19,21 +19,25 @@ func (gr *GroupRoute) NewGroupRoute(
 	if middlewares == nil {
 		middlewares = make([]Middleware, 0)
 	}
-	gr.router.mu.Lock()
-	defer gr.router.mu.Unlock()
 	if pattern == "" {
-		panic("empty pattern")
+		ErrorLog.Panic("empty pattern")
 	}
 	if pattern[len(pattern)-1] == '/' {
 		pattern = pattern[:len(pattern)-1]
 	}
+	gr.router.mu.Lock()
+	defer gr.router.mu.Unlock()
 	if _, ok := gr.router.groups[gr.pattern+pattern]; ok {
 		ErrorLog.Panicf("the \"%s\" group route already exists", gr.pattern+pattern)
+	}
+	ms := gr.middlewares
+	if middlewares != nil {
+		ms = append(ms, middlewares...)
 	}
 	groupRoute := &GroupRoute{
 		router:      gr.router,
 		pattern:     gr.pattern + pattern,
-		middlewares: middlewares,
+		middlewares: ms,
 	}
 	gr.router.groups[gr.pattern+pattern] = groupRoute
 	return groupRoute
@@ -44,14 +48,15 @@ func (gr *GroupRoute) GroupRoute(pattern string, fn func(gr *GroupRoute), middle
 	if middlewares == nil {
 		middlewares = make([]Middleware, 0)
 	}
-	gr.router.mu.Lock()
+
 	if pattern == "" {
-		gr.router.mu.Unlock()
 		panic("empty pattern")
 	}
 	if pattern[len(pattern)-1] == '/' {
 		pattern = pattern[:len(pattern)-1]
 	}
+
+	gr.router.mu.Lock()
 	if _, ok := gr.router.groups[gr.pattern+pattern]; ok {
 		gr.router.mu.Unlock()
 		ErrorLog.Panicf("the \"%s\" group route already exists", gr.pattern+pattern)

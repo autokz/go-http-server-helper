@@ -15,6 +15,9 @@ type Route struct {
 
 // Middleware appends one or more middleware functions to the route.
 func (r *Route) Middleware(middlewares ...Middleware) *Route {
+	if middlewares == nil {
+		ErrorLog.Panic("empty middlewares")
+	}
 	r.middlewares = append(r.middlewares, middlewares...)
 	r.handler = r.original
 	for i := len(r.middlewares) - 1; i >= 0; i-- {

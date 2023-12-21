@@ -5,6 +5,8 @@ import (
 	"net/http"
 )
 
+// getDefaultOptionsMiddleware
+// Deprecated: The function is deprecated use the httpHelper2 package.
 func getDefaultOptionsMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == OPTIONS_METHOD {
@@ -24,6 +26,8 @@ func getDefaultOptionsMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	}
 }
 
+// method
+// Deprecated: The function is deprecated use the httpHelper2 package.
 func method(method string, next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if method != r.Method {
