@@ -10,7 +10,7 @@ Helper for http server by go - make your code clear
 To use `httpHelper2` in your Go project, simply import it in your code:
 
 ```bash
-go get github.com/autokz/go-http-server-helper
+go get github.com/autokz/go-http-server-helper/v2
 ```
 
 ```go
