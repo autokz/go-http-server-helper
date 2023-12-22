@@ -83,5 +83,5 @@ router.Get("/protected", yourProtectedHandler).
 ```
 
 ### Examples
-Check out the [examples](https://github.com/autokz/go-http-server-helper/httpHelper2/_examples) directory for more usage examples.
+Check out the [examples](https://github.com/autokz/go-http-server-helper/tree/main/httpHelper2/_examples) directory for more usage examples.
 
