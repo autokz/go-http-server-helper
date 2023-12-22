@@ -14,7 +14,7 @@ go get github.com/autokz/go-http-server-helper/v2
 ```
 
 ```go
-import "github.com/autokz/go-http-server-helper/httpHelper2"
+import "github.com/autokz/go-http-server-helper/v2/httpHelper"
 ```
 ## Usage
 
@@ -23,7 +23,7 @@ To create a basic HTTP server with httpHelper2, follow these steps:
 
 1. Import the package:
     ```go
-    import "github.com/autokz/go-http-server-helper/httpHelper2" 
+    import "github.com/autokz/go-http-server-helper/v2/httpHelper"
     ```
    
 2. Create a router:
