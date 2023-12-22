@@ -30,7 +30,8 @@ func (r *Route) Middleware(middlewares ...Middleware) *Route {
 func (r *Route) methodMiddleware(next http.HandlerFunc) http.HandlerFunc {
 	return func(rw http.ResponseWriter, request *http.Request) {
 		if request.Method != r.method {
-			writeJson(rw, http.StatusMethodNotAllowed, http.StatusText(http.StatusMethodNotAllowed))
+			rw.WriteHeader(http.StatusMethodNotAllowed)
+			_, _ = rw.Write([]byte(http.StatusText(http.StatusMethodNotAllowed)))
 			return
 		}
 		next.ServeHTTP(rw, request)

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	router := httpHelper2.NewRouter()
+	router := httpHelper2.NewRouter(httpHelper2.JsonMiddleware)
 
 	cors := httpHelper2.NewCORS()
 	cors.AddAllowedHeaders("Authorization", "Content-Type")
@@ -17,7 +17,7 @@ func main() {
 	cors.SetExposeHeaders("Access-Token", "Refresh-Token")
 	router.CORS(cors)
 
-	router.Get("/", _examples.Welcome)
+	router.Get("/users", _examples.Users)
 
 	log.Println(cors)
 	log.Fatal(http.ListenAndServe(":8080", router.Mux()))

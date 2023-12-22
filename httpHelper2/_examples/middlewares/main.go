@@ -22,6 +22,7 @@ func main() {
 	// Example 4
 	gr := router.NewGroupRoute("/v1/example", m7, m8)
 	gr.Get("", _examples.Welcome)
+
 	// Example 5
 	gr.Middleware(m9, m10)
 

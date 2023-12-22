@@ -27,7 +27,6 @@ type Contact struct {
 func main() {
 	router := httpHelper2.NewRouter(httpHelper2.JsonMiddleware)
 
-	router.Get("/", _examples.Welcome)
 	router.Get("/users", Users)
 	router.Get("/users/contacts", Contacts)
 

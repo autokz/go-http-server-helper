@@ -11,8 +11,6 @@ func main() {
 	router := httpHelper2.NewRouter()
 	router.CORS(httpHelper2.NewCORS())
 
-	router.Get("/", _examples.Welcome)
-
 	// Example 1
 	v1Group := router.NewGroupRoute("/v1", httpHelper2.JsonMiddleware)
 	v1Group.Get("/users", _examples.Users)
