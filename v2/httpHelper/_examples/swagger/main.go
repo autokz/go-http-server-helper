@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/autokz/go-http-server-helper/httpHelper2"
-	"github.com/autokz/go-http-server-helper/httpHelper2/_examples"
+	"github.com/autokz/go-http-server-helper/v2/httpHelper"
+	"github.com/autokz/go-http-server-helper/v2/httpHelper/_examples"
 	"log"
 	"net/http"
 	"time"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/autokz/go-http-server-helper/httpHelper2"
+	"github.com/autokz/go-http-server-helper/v2/httpHelper"
 	"log"
 	"os"
 )
