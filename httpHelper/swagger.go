@@ -1,4 +1,4 @@
-package httpHelper2
+package httpHelper
 
 import (
 	httpSwagger "github.com/swaggo/http-swagger"

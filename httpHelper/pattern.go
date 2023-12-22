@@ -1,4 +1,4 @@
-package httpHelper2
+package httpHelper
 
 import (
 	"strings"

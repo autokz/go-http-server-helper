@@ -25,7 +25,7 @@ type Contact struct {
 // @BasePath		/
 // @host			localhost:8080
 func main() {
-	router := httpHelper2.NewRouter(httpHelper2.JsonMiddleware)
+	router := httpHelper.NewRouter(httpHelper.JsonMiddleware)
 
 	router.Get("/users", Users)
 	router.Get("/users/contacts", Contacts)
@@ -38,7 +38,7 @@ func main() {
 	v1.Swagger("./docs") // http://localhost:8080/v1/swagger
 
 	// Example 3
-	router.GroupRoute("/v2", func(gr *httpHelper2.GroupRoute) {
+	router.GroupRoute("/v2", func(gr *httpHelper.GroupRoute) {
 		gr.Swagger("./docs") // http://localhost:8080/v2/swagger
 	})
 

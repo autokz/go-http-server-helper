@@ -8,9 +8,9 @@ import (
 )
 
 func main() {
-	router := httpHelper2.NewRouter(httpHelper2.JsonMiddleware)
+	router := httpHelper.NewRouter(httpHelper.JsonMiddleware)
 
-	cors := httpHelper2.NewCORS()
+	cors := httpHelper.NewCORS()
 	cors.AddAllowedHeaders("Authorization", "Content-Type")
 	cors.SetAllowedMethods(http.MethodGet, http.MethodPost)
 	cors.AddAllowedOrigins("http://localhost:3000", "http://localhost:3001")

@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Example 1
-	router := httpHelper2.NewRouter(m1, m2)
+	router := httpHelper.NewRouter(m1, m2)
 	router.Get("/", _examples.Welcome)
 
 	// Example 2
@@ -27,7 +27,7 @@ func main() {
 	gr.Middleware(m9, m10)
 
 	// Example 6
-	gr.GroupRoute("/welcome", func(gr *httpHelper2.GroupRoute) {
+	gr.GroupRoute("/welcome", func(gr *httpHelper.GroupRoute) {
 		gr.Get("", _examples.Contacts)
 	}, m11, m12)
 
