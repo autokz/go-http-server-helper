@@ -128,6 +128,7 @@ func (cors *CORS) AddExposeHeaders(headers ...string) *CORS {
 
 // SetAllowedOrigins sets allowed origins to the CORS configuration.
 func (cors *CORS) SetAllowedOrigins(origins ...string) *CORS {
+	cors.allowedOrigins = make(map[string]struct{})
 	for _, origin := range origins {
 		cors.allowedOrigins[origin] = struct{}{}
 	}
